@@ -1,0 +1,2 @@
+# turkihaber
+Kendi haber platformum.
