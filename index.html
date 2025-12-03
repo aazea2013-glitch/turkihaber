@@ -33,45 +33,27 @@
             <pre><code>
 #define trigPin 9
 #define echoPin 10
-#define ledPin 3
-#define buzzerPin 4
 
 void setup() {
+  Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(ledPin, OUTPUT);
-  pinMode(buzzerPin, OUTPUT);
-
-  digitalWrite(ledPin, LOW);
-  digitalWrite(buzzerPin, LOW);
 }
 
-long getDistance() {
+void loop() {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  long duration = pulseIn(echoPin, HIGH, 30000);
+  long duration = pulseIn(echoPin, HIGH);
   long distance = duration * 0.034 / 2;
 
-  return distance;
+  Serial.println(distance);
+  delay(200);
 }
 
-void loop() {
-  long distance = getDistance();
-
-  if (distance > 0 && distance <= 5) {
-    digitalWrite(ledPin, HIGH);
-    digitalWrite(buzzerPin, HIGH);
-  } else {
-    digitalWrite(ledPin, LOW);
-    digitalWrite(buzzerPin, LOW);
-  }
-
-  delay(50);
-}
             </code></pre>
 
         </article>
